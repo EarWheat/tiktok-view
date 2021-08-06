@@ -2,6 +2,7 @@ import './App.css';
 import { Tabs, Badge } from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
 import Live from './compents/live/Live';
+import VoiceRecorder from "./compents/voiceRecorder/VoiceRecorder";
 
 const tabs = [
   { title: <Badge text={'3'}>First Tab</Badge> },
@@ -31,6 +32,7 @@ function App() {
               <Live />
             </div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
+              <VoiceRecorder />
             </div>
           </Tabs>
         </div>
