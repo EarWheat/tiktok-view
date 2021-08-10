@@ -3,6 +3,7 @@ import { Tabs, Badge } from 'antd-mobile';
 import 'antd-mobile/dist/antd-mobile.css';
 import Live from './compents/live/Live';
 import VoiceRecorder from "./compents/voiceRecorder/VoiceRecorder";
+import Video from "./compents/video/Video";
 
 const tabs = [
   { title: <Badge text={'3'}>First Tab</Badge> },
@@ -26,10 +27,10 @@ function App() {
                 onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
           >
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-              Content of third tab
+              <Live />
             </div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-              <Live />
+              <Video />
             </div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
               <VoiceRecorder />

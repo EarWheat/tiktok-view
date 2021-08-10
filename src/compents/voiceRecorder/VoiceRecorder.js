@@ -22,6 +22,9 @@ const record = new Recorder( {
 class VoiceRecorder extends React.Component{
     constructor(props) {
         super(props);
+        this.state = {
+            tranResult: ""
+        }
     }
 
     startRecord = () => {
@@ -40,24 +43,25 @@ class VoiceRecorder extends React.Component{
 
     translate = () => {
         record && record.stop();
+        console.log("translate");
         this.sendVoice(record.getPCMBlob());
     }
 
     sendVoice = (data) => {
         let formData = new FormData();
-        formData.append('a', data);
+        formData.append('voice', data);
 
         // fetch(`http://127.0.0.1:3000/gen/voice?platform=${ this.state.platform }`, {
-        fetch(`https://recorder.zhuyuntao.cn/gen/voice?platform=${ this.state.platform }`, {
+        fetch(`http://127.0.0.1:8000/tiktok/voice/translate`, {
             method: 'POST',
             body: formData
         }).then(res => res.json())
             .then(json => {
                 // oReg.innerHTML = json.result;
-                console.log(json.result)
+                console.log(json)
                 this.setState({
                     translating: false,
-                    tranResult: json.result
+                    tranResult: json.data
                 });
             });
     }
@@ -67,8 +71,9 @@ class VoiceRecorder extends React.Component{
         return(
             <div>
                 <button onClick={this.startRecord}>开始录音</button>
-                <button onClick={this.stopRecord}>停止录音</button>
+                <button onClick={this.translate}>停止录音</button>
                 <button onClick={this.playRecord}>播放录音</button>
+                <div>{this.state.tranResult}</div>
             </div>
         )
     }
